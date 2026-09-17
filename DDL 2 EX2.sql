@@ -1,34 +1,3 @@
-CREATE DATABASE DB_PURCHASES;
-
-USE DB_PURCHASES;
-
-CREATE TABLE CUSTOMERS (
-    ID INT NOT NULL,
-    NAME VARCHAR(100) NOT NULL,
-    TELEPHONE VARCHAR(20),
-    ADDRESS VARCHAR(200),
-    CONSTRAINT PK_CUSTOMERS PRIMARY KEY (ID)
-);
-
-CREATE TABLE PRODUCTS (
-    ID INT NOT NULL,
-    PRODUCT_NAME VARCHAR(100) NOT NULL,
-    TYPE VARCHAR(50) NOT NULL,
-    PRICE DECIMAL(10,2) NOT NULL,
-    QUANTITY_IN_STOCK INT NOT NULL,
-    CONSTRAINT PK_PRODUCTS PRIMARY KEY (ID)
-);
-
-CREATE TABLE PURCHASES (
-    ID INT NOT NULL,
-    CUSTOMER_ID INT NOT NULL,
-    PURCHASE_DATE DATETIME NOT NULL,
-    TOTAL_VALUE DECIMAL(10,2) NOT NULL,
-    CONSTRAINT PK_PURCHASES PRIMARY KEY (ID),
-    CONSTRAINT FK_PURCHASES_CUSTOMERS
-        FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(ID)
-);
-
 CREATE TABLE PURCHASE_ITEMS (
     ID INT NOT NULL,
     PURCHASE_ID INT NOT NULL,
@@ -78,14 +47,14 @@ insert into purchases (id, customer_id, purchase_date, total_value) values
 ('10', '10', '2026-03-17 10:00:00', 159.90);
 
 insert into purchase_items (id, purchase_id, product_id, quantity) values
-('1', '1', '1', 1), -- compra 1: 1 Teclado Mecânico (249.90)
-('2', '1', '2', 1), -- compra 1: 1 Mouse Gamer (129.50) -> Total: 379.40
-('3', '2', '3', 1), -- compra 2: 1 Monitor 24" (899.00)
-('4', '3', '8', 1), -- compra 3: 1 Memória RAM (299.00)
-('5', '4', '5', 1), -- compra 4: 1 Cadeira de Escritório (1199.99)
-('6', '5', '6', 1), -- compra 5: 1 Webcam 1080p (189.90)
-('7', '6', '7', 2), -- compra 6: 2 SSD NVMe (420.00 * 2 = 840.00)
-('8', '7', '4', 1), -- compra 7: 1 Headset Bluetooth Pro (350.00)
-('9', '8', '2', 2), -- compra 8: 2 Mouse Gamer (129.50 * 2 = 259.40)
-('10', '9', '9', 1) -- compra 9: 1 Roteador Wi-Fi (450.50)
-('11', '10', '10', 1); -- compra 10: 1 Carregador Portátil (159.90)
+('1', '1', '1', 1, 'compra 1','1','Teclado Mecânico')(249.90)
+('2', '1', '2', 1, 'compra 2','1','Mouse Gamer')('129.50','379.40')
+('3', '2', '3', 1, 'compra 2', '1', 'Monitor 24')(899.00)
+('4', '3', '8', '1','1','Memória RAM')(299.00)
+('5', '4', '5', '1','1','Cadeira de Escritório')(1199.99)
+('6', '5', '6', '1','1','Webcam 1080p')(189.90)
+('7', '6', '7', '2','2','SD NVMe')(420.00 * 2 = 840.00)
+('8', '7', '4', '1','1','Headset Bluetooth Pro')(350.00)
+('9', '8', '2', '2','2','Mouse Gamer')(129.50 * 2 = 259.40)
+('10', '9', '9', '1','1',' Roteador Wi-Fi')(450.50)
+
